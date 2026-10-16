@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>С днём рождения, мамочка 🎂</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(160deg, #fdfcfb 0%, #f7e7e3 50%, #f3d9d4 100%);
+    color: #5a3d3a;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Плавающие сердечки и цветы на фоне */
+  .heart {
+    position: fixed;
+    bottom: -50px;
+    font-size: 22px;
+    opacity: 0.5;
+    animation: floatUp 12s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .heart:nth-child(1) { left: 8%;  animation-delay: 0s; }
+  .heart:nth-child(2) { left: 28%; animation-delay: 3s; }
+  .heart:nth-child(3) { left: 52%; animation-delay: 6s; }
+  .heart:nth-child(4) { left: 74%; animation-delay: 2s; }
+  .heart:nth-child(5) { left: 90%; animation-delay: 8s; }
+
+  @keyframes floatUp {
+    0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10%  { opacity: 0.6; }
+    90%  { opacity: 0.4; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 60px 22px 60px;
+    text-align: center;
+  }
+
+  .badge {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f8c8c8, #e89a9a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 44px;
+    box-shadow: 0 10px 25px rgba(232, 154, 154, 0.45);
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.07); }
+  }
+
+  h1 {
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    color: #7a4a48;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: #a67f7c;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 35px;
+  }
+
+  .divider {
+    width: 60px;
+    height: 2px;
+    background: #e89a9a;
+    margin: 0 auto 35px;
+    border-radius: 2px;
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+    border-radius: 22px;
+    padding: 28px 24px;
+    margin-bottom: 22px;
+    box-shadow: 0 8px 30px rgba(180, 120, 120, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    text-align: left;
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  .card p + p { margin-top: 14px; }
+
+  .quote {
+    font-style: italic;
+    color: #8a5a58;
+    border-left: 3px solid #e89a9a;
+    padding-left: 14px;
+    margin-top: 18px;
+  }
+
+  /* Кнопка */
+  button {
+    background: linear-gradient(135deg, #f8b4b4, #e07a7a);
+    color: white;
+    border: none;
+    padding: 15px 38px;
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(224, 122, 122, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-top: 10px;
+  }
+  button:active {
+    transform: scale(0.95);
+    box-shadow: 0 4px 12px rgba(224, 122, 122, 0.4);
+  }
+
+  #secret {
+    display: none;
+    margin-top: 22px;
+    padding: 22px;
+    background: rgba(255, 240, 240, 0.9);
+    border-radius: 16px;
+    font-size: 17px;
+    color: #b1504e;
+    font-weight: 600;
+    line-height: 1.7;
+    text-align: left;
+    animation: fadeIn 0.6s ease;
+  }
+  #secret .big {
+    display: block;
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 14px;
+    color: #c94a4a;
+  }
+  #secret .age {
+    display: inline-block;
+    background: #ffe0e0;
+    padding: 4px 10px;
+    border-radius: 10px;
+    font-size: 18px;
+    color: #d43f3f;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .footer {
+    margin-top: 40px;
+    font-size: 13px;
+    color: #b89491;
+    letter-spacing: 1px;
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: appear 0.9s ease forwards;
+  }
+  .fade-in:nth-of-type(1) { animation-delay: 0.1s; }
+  .fade-in:nth-of-type(2) { animation-delay: 0.3s; }
+  .fade-in:nth-of-type(3) { animation-delay: 0.5s; }
+  .fade-in:nth-of-type(4) { animation-delay: 0.7s; }
+  @keyframes appear {
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Плавающие украшения -->
+  <div class="heart">🌸</div>
+  <div class="heart">💗</div>
+  <div class="heart">🎂</div>
+  <div class="heart">💕</div>
+  <div class="heart">🌺</div>
+
+  <div class="container">
+
+    <div class="badge fade-in">🎂</div>
+    <h1 class="fade-in">Мамочке</h1>
+    <p class="subtitle fade-in">с днём рождения</p>
+    <div class="divider fade-in"></div>
+
+    <div class="card fade-in">
+      <p>Сегодня особенный день — день, когда появилась ты. И я хочу сказать тебе самое главное.</p>
+      <p class="quote">«Ты — самое дорогое, что у меня есть».</p>
+    </div>
+
+    <div class="card fade-in" style="text-align:center;">
+      <p style="margin-bottom:16px;">У меня для тебя сюрприз 💌</p>
+      <button onclick="showSecret()">Открой</button>
+      <div id="secret">
+        <span class="big">С днём рождения, мамочка! 🎉</span>
+        Желаю тебе здоровья, чтоб ты продолжала идти к своим желаниям. Ну и радоваться. 🌷<br><br>
+        Тебе уже <span class="age">36</span> 😱 Это огромное число.<br>
+        Но не забывай, что ты выглядишь на все <b>20</b>. 💖
+      </div>
+    </div>
+
+    <div class="footer fade-in">сделано с душой для самого дорогого человека</div>
+
+  </div>
+
+  <script>
+    function showSecret() {
+      const s = document.getElementById('secret');
+      s.style.display = 'block';
+      setTimeout(() => s.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+    }
+  </script>
+
+</body>
+        </html>
